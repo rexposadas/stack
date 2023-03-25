@@ -20,3 +20,10 @@ func BenchmarkAdd(b *testing.B) {
 		Add(i, i+1)
 	}
 }
+
+func FuzzAdd(f *testing.F) {
+	f.Fuzz(func(t *testing.T, x, y int) {
+		result := Add(x, y)
+		assert.Equal(t, result, x+y)
+	})
+}
