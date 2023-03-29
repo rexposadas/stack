@@ -1,4 +1,4 @@
-This is a repository of a go stack. This is meant to be a learnig too. 
+This is a repository of a go stack. This is meant to be a learning too. 
 
 # Directories and what's in there
 
