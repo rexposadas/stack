@@ -18,7 +18,10 @@ since this are the simple cases. Start by looking at `main.go`
 
 The simplest way to get started is to run the `make` targets.
 
+`make help` shows you possible targets.
+
 `make test` to run the tests.
+
 `make bench` to run benchmarks.
 
 The code starts in main.go where the REST API is initialized.
