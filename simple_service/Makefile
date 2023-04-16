@@ -27,3 +27,12 @@ fuzz: ## Run Fuzz on func Add()
 	@ echo ▶️ go test $(FUZZ_ARGS) $(FUZZ_TARGETS) 10s
 	go test $(FUZZ_ARGS) $(FUZZ_TARGETS)
 	@ echo ✅ success!
+
+.PHONY: docker_build
+docker_build: ## Build docker image
+	docker build -t rexposadas/simple_service .
+
+
+.PHONY: docker_run
+docker_run: docker_build ## Build and run run docker image
+	docker run -p 8080:8080 rexposadas/simple_service
