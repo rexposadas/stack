@@ -33,4 +33,4 @@ In another terminal, make an HTTP call to the running container:
     curl http://localhost:8000/
 
 
-You should get an HTTP 200 reponse
+You should get an HTTP 200 response
