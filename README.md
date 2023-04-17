@@ -4,6 +4,8 @@ This is a repository demostrates how to build "things" using Go.  Each directory
 
 2 - Working `docker compose` 
 
+3 - Working with generics.
+
 # Learning
 
 In each of the directories I have comments which starts with `// Notes`. These indicate 
