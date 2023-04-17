@@ -1,10 +1,16 @@
-This is a repository demostrates how to build "things" using Go.  Each directory is meant to be a learning tool to help you learn how to build things with go.  Currently this has content to teach the following:
+This is a repository demonstrates how to build "things" using Go.  Each directory is meant to be a learning tool to help you learn how to build things with go.  Currently, this has content to teach the following:
 
 1 - Creating web services and running them using `docker`.
 
 2 - Working `docker compose` 
 
 3 - Working with generics.
+
+# Goals of the project
+
+1 - You should be able to pick a top you want to learn, go the directory where that's taught and run + learn everything inside that directory. Each directory should be self-contained. There should be no need to look at files from a different directory. For example. If I wanted to learn how to `dockerize` a webservice, I go to the `dockerize` directory and learn how to do it from there.
+
+2 - Demonstrate how to work with different go technologies.
 
 # Learning
 
