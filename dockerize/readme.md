@@ -13,7 +13,7 @@ These notes indicates what I wanted to teach within this particular project.
 
 In a terminal, build the image rexposadas/dockerize_example: 
 
-    make build 
+    make docker_build 
 
 
 The command above creates an image in the docker registery in your localhost.  If you run 
@@ -25,7 +25,7 @@ you will see the following image: `rexposadas/dockerize_example`
 
 Run the container
 
-    make run
+    make docker_run
 
 
 In another terminal, make an HTTP call to the running container:

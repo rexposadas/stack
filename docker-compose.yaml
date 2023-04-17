@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+
+  simple_service:
+    image: rexposadas/simple_service
+    container_name: rexposadas_simples_service
+    build:
+      context: .
+      dockerfile: simple_service/Dockerfile
+    environment:
+      GIN_MODE: release
+    expose:
+      - '8080'
+    ports:
+      - '8080:8080'
+    entrypoint: ['/app/simple_service', '--port', '8080']
+
+  dockerize_service:
+    image: rexposadas/dockerize_example
+    container_name: rexposadas_dockerize_example
+    build:
+      context: .
+      dockerfile: dockerize/Dockerfile
+    environment:
+      GIN_MODE: release
+    expose:
+      - '8080'
+    ports:
+      - '8081:8080'
+    entrypoint: ['/app/dockerize', '--port', '8081']
