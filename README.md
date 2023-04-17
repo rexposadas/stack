@@ -1,4 +1,8 @@
-This is a repository of a go stack. 
+This is a repository demostrates how to build "things" using Go.  Each directory is meant to be a learning tool to help you learn how to build things with go.  Currently this has content to teach the following:
+
+1 - Creating web services and running them using `docker`.
+
+2 - Working `docker compose` 
 
 # Learning
 
