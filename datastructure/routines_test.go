@@ -29,7 +29,6 @@ func Test_select(t *testing.T) {
 	for {
 		select {
 		case x := <-m:
-			//t.Log("got: ", x)
 			assert.Contains(t, []int{1, 2}, x)
 		case <-quit:
 			return

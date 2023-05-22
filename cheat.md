@@ -18,9 +18,6 @@ select {
         fmt.Println(x)  // Print what was got from channel
 }
 
-
-
-
 m := make(chan int)
 quit := make(chan int)
 select{
@@ -33,7 +30,7 @@ select{
 
 
 
-go test -v -r NameOfTest // running a specific  test
+go test -v -run NameOfTest // running a specific  test
 
 go func() { // anonymous func as a go routine
 }()         // the last () is so that the func is called. 
