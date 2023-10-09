@@ -22,6 +22,3 @@ compose: compose_down
 health: ## Make a call to the health services to ensure that the services are up and running.
 	@echo calling simple service
 	curl http://localhost:8080/health
-
-	@echo calling dockerize service
-	curl http://localhost:8081/health
