@@ -15,17 +15,4 @@ services:
     ports:
       - '8080:8080'
     entrypoint: ['/app/simple_service', '--port', '8080']
-#
-#  dockerize_service:
-#    image: rexposadas/dockerize
-#    container_name: rexposadas_dockerize
-#    build:
-#      context: ./apps/lessons/
-#      dockerfile: dockerize/Dockerfile
-#    environment:
-#      GIN_MODE: release
-#    expose:
-#      - '8080'
-#    ports:
-#      - '8081:8080'
-#    entrypoint: ['/app/dockerize', '--port', '8081']
+
