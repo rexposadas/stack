@@ -7,11 +7,10 @@
 # Notes: Use this image to build the binary.
 FROM golang:1.19-alpine3.17 AS builder
 WORKDIR /app
-COPY . .
+COPY apps/lessons/dockerize .
 RUN go build -o /app/dockerize
 
-# Notes: Use the image below, which is smaller than the builder, to run our
-#   binary.
+# Notes: Use the image below, which is smaller than the builder, to run our binary.
 FROM alpine:3.15
 WORKDIR /app
 COPY --from=builder /app .

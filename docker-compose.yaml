@@ -4,9 +4,9 @@ services:
 
   simple_service:
     image: rexposadas/simple_service
-    container_name: rexposadas_simples_service
+    container_name: rexposadas_simple_service
     build:
-      context: .
+      context: ./apps/lessons/
       dockerfile: simple_service/Dockerfile
     environment:
       GIN_MODE: release
@@ -17,10 +17,10 @@ services:
     entrypoint: ['/app/simple_service', '--port', '8080']
 
   dockerize_service:
-    image: rexposadas/dockerize_example
-    container_name: rexposadas_dockerize_example
+    image: rexposadas/dockerize
+    container_name: rexposadas_dockerize
     build:
-      context: .
+      context: ./apps/lessons/
       dockerfile: dockerize/Dockerfile
     environment:
       GIN_MODE: release
