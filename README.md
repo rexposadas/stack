@@ -54,13 +54,6 @@ A simple REST API. Use this to learn how to:
 1. Create a simple REST API
 2. Test the logic of your API
 
-## dockerize
-Teaches how to:
-1. Create a docker image from a service.
-2. Run a docker container.
-3. Make an HTTP call to a running container.
-
-
 # Running the services
 
 Instructions on how to work with the individual services are in the `readme.md` inside the directory.
