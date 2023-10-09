@@ -21,7 +21,7 @@ services:
     container_name: rexposadas_dockerize_example
     build:
       context: .
-      dockerfile: dockerize/Dockerfile
+      dockerfile: apps/lessons/dockerize/Dockerfile
     environment:
       GIN_MODE: release
     expose:

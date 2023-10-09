@@ -2,11 +2,12 @@ package main
 
 import (
 	"bytes"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"os"
 	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 type MyInt int
@@ -22,7 +23,7 @@ func Test_typeConversion(t *testing.T) {
 
 	// We need a type conversion.
 	i = int(mi)
-	assert.Equal(t, i, 2)
+	assert.Equal(t, 12, i)
 
 }
 
