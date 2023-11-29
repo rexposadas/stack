@@ -11,12 +11,9 @@ test: ## Run all tests.
 compose_down: ## Tear down services
 	docker compose down
 
-
 .PHONY: compose
 compose: compose_down
 	docker compose up --remove-orphans
-
-
 
 .PHONY: health
 health: ## Make a call to the health services to ensure that the services are up and running.
