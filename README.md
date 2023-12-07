@@ -1,10 +1,12 @@
-This is a repository demonstrates how to build "things" using Go.  Each directory is meant to be a learning tool to help you learn how to build things with go.  Currently, this has content to teach the following:
+This is a repository demonstrates how to build "things", mostly in Go. There's some python code in here.  
 
-1 - Creating web services and running them using `docker`.
+Noteworthy content:
 
-2 - Working `docker compose` 
+1 - app: directory of all the apps. 
 
-3 - Working with generics.
+2 - leetcode: my leetcode answers 
+
+3 - lessons: tools for teaching ( mostly to myself )
 
 # Goals of the project
 

@@ -5,8 +5,9 @@ package main
 // handling test cases.
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // Demonstrate how to run a test.

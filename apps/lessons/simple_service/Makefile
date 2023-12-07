@@ -14,7 +14,7 @@ test: ## Test the Go modules within this package.
 .PHONY: bench
 BENCH_ARGS ?= -bench
 BENCH_TARGETS ?=.
-bench: ## Run bench marks
+bench: ## Run benchmarks
 	@ echo ▶️ go test $(BENCH_ARGS) $(BENCH_TARGETS)
 	go test $(BENCH_ARGS) $(BENCH_TARGETS)
 	@ echo ✅ success!
