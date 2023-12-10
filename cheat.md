@@ -48,6 +48,29 @@ go test -v -run NameOfTest // running a specific  test
 	<- ticker.C  // tick every second
 ```
 
+```go
+i := 42
+
+j := float64(i)
+```
+
+```go
+	var i interface{} = "hello"
+
+	s := i.(string)
+	fmt.Println(s)
+```
+
+```go
+switch v := i.(type) {
+	case int:
+		fmt.Printf("Twice %v is %v\n", v, v*2)
+	case string:
+		fmt.Printf("%q is %v bytes long\n", v, len(v))
+	}
+```
+
+
 What is an interface: A type defined using a set of methods.
 What is a struct: A user-defined type to store a collection of fields.
 What is a receiver: a method bound to a type

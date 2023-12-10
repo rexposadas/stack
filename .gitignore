@@ -6,3 +6,4 @@ plz-out
 # Usage of sqllist
 #
 *.db
+__pycache__/
