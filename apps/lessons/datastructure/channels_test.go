@@ -16,7 +16,7 @@ func Test_SimpleChannel(t *testing.T) {
 	assert.Equal(t, "ping", got)
 }
 
-// Buffered channels do not need a receiver for it to work.
+// Buffered channels do not need a receiver to function properly.
 func Test_Buffered(t *testing.T) {
 	m := make(chan string, 2)
 
@@ -27,7 +27,7 @@ func Test_Buffered(t *testing.T) {
 	assert.Equal(t, "two", <-m)
 }
 
-// pass a pointer to the slice in order to
+// Pass a pointer to the slice in order to
 // modify it for the caller.
 func growSlice(m chan bool, s *[]int) {
 	*s = append(*s, 1)
