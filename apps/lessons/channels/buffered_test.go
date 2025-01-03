@@ -9,8 +9,8 @@ import (
 func TestBuffered(t *testing.T) {
 	m := make(chan int, 2) // buffered.
 
-	// Following lines causes deadlocks of unbuffered channels.
-	// Works on buffered channels because we can hold the value in buffer without a consumer
+	// The following lines cause deadlocks in unbuffered channels.
+	// This works with buffered channels because we can hold the value in the buffer without a consumer.
 	m <- 1   // buffer the number 1
 	x := <-m // consume 1
 	close(m)
