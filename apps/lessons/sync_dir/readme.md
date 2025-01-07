@@ -1,5 +1,5 @@
-# why 
+# Why
 
-makes use of rsync to sync directories, very useful for copying repositories
+Makes use of rsync to sync directories. Very useful for copying repositories.
 
-run `make cp` to sync source to dest directory
+Run `make cp` to sync source to destination directory.
