@@ -6,6 +6,7 @@ from pydantic_ai import Agent, RunContext
 import logfire
 
 logfire.configure()
+logfire.info("pystack: bank")
 
 
 class DatabaseConn:
