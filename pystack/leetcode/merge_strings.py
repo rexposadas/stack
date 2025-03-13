@@ -7,6 +7,7 @@
 
 # Return the merged string.
 
+
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
         merged = []
@@ -25,11 +26,12 @@ class Solution:
         if j < len(word2):
             merged.append(word2[j:])
 
-        return ''.join(merged)
+        return "".join(merged)
+
 
 def test_merge_strings():
     s = Solution()
-    assert s.mergeAlternately("ab","pqrs") == "apbqrs"
+    assert s.mergeAlternately("ab", "pqrs") == "apbqrs"
     assert s.mergeAlternately("abcd", "pq") == "apbqcd"
 
 

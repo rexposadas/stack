@@ -7,12 +7,15 @@
 
 # Return the merged string.
 
+
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
+        raise NotImplementedError()
+
 
 def test_merge_strings():
     s = Solution()
-    assert s.mergeAlternately("ab","pqrs") == "apbqrs"
+    assert s.mergeAlternately("ab", "pqrs") == "apbqrs"
     assert s.mergeAlternately("abcd", "pq") == "apbqcd"
 
 

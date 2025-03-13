@@ -1,8 +1,9 @@
 import asyncio
 
 from pydantic import BaseModel, Field
-from pydantic_ai import Agent, RunContext
+from pydantic_ai import Agent
 from typing import List
+
 """
 # Python Coding Test: Conversation Summary for an LLM
 
@@ -48,8 +49,12 @@ User: Let's start with the basics. Agent: Since you want to start with the basic
 
 
 class Summary(BaseModel):
-    conversation_history: List[str] = Field(default_factory=list, description="Complete conversation history")
-    current_summary: str = Field(default="", description="Current summary of the conversation")
+    conversation_history: List[str] = Field(
+        default_factory=list, description="Complete conversation history"
+    )
+    current_summary: str = Field(
+        default="", description="Current summary of the conversation"
+    )
 
 
 chat_agent = Agent(
@@ -60,7 +65,7 @@ chat_agent = Agent(
     The current summary of our conversation is in deps.current_summary.
     
     IMPORTANT: Before responding, ALWAYS review the conversation history and summary 
-    to maintain context and provide accurate responses about previously discussed information."""
+    to maintain context and provide accurate responses about previously discussed information.""",
 )
 
 
@@ -70,7 +75,7 @@ summary_agent = Agent(
     Create a concise but detailed summary of the conversation that includes:
     - All personal information shared (names, preferences, etc.)
     - Key discussion points
-    - Important context"""
+    - Important context""",
 )
 
 
@@ -81,29 +86,29 @@ async def main():
     while True:
         user_input = input("\nYou: ")
 
-        if user_input.lower() == 'exit':
+        if user_input.lower() == "exit":
             print("Chat ended.")
             break
 
         try:
             # Add user input to history
             memory.conversation_history.append(f"User: {user_input}")
-            
+
             # Generate new summary
             full_conversation = "\n".join(memory.conversation_history)
             summary_result = await summary_agent.run(full_conversation)
             memory.current_summary = summary_result.data
-            
+
             # Get AI response using both history and summary
             response = await chat_agent.run(
                 f"""Context: {memory.current_summary}
                 Question: {user_input}""",
-                deps=memory
+                deps=memory,
             )
-            
+
             # Add AI response to history
             memory.conversation_history.append(f"Assistant: {response.data}")
-            
+
             print(f"\nAgent: {response.data}")
 
         except Exception as e:

@@ -1,4 +1,3 @@
-
 # Task: create fib sequence with
 # 1 - brute force
 # 2 - optimize with map
@@ -6,6 +5,7 @@
 
 # What is the Big O?
 def fib(n):
+    raise NotImplementedError()
 
 
 def test_fib():

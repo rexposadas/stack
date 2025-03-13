@@ -1,7 +1,4 @@
-import unittest
-
 class Solution:
-
     # O = 2^n
     # 2 recursive calls for every input  n ,
     # leading to an exponential growth in the number of calls:
@@ -9,8 +6,11 @@ class Solution:
 
     # space complexity: n - the maximum depth of the recursion stack.
     def climbStairs(self, n: int) -> int:
+        raise NotImplementedError
 
-    def climbStairsLoop(self, n: int)-> int:
+    def climbStairsLoop(self, n: int) -> int:
+        raise NotImplementedError
+
 
 def test_stairs():
     print("running test using recursion")
