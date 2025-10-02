@@ -24,18 +24,18 @@ func NewCache(capacity int, connection *Connection) *Cache {
 	}
 }
 
-func (c *Cache) removesLowestRankingItem() {
-	// find the lowest ranking item
+func (c *Cache) removeLowestRankingItem() {
+	if len(c.items) == 0 {
+		return
+	}
+
 	var lowestRankingItem Rankable
-	iter := 0
+	var found bool
+
 	for _, item := range c.items {
-		if iter == 0 {
+		if !found || item.rank < lowestRankingItem.rank {
 			lowestRankingItem = item
-			iter++
-			continue
-		}
-		if item.rank < lowestRankingItem.rank {
-			lowestRankingItem = item
+			found = true
 		}
 	}
 
@@ -63,7 +63,7 @@ func (c *Cache) Get(key string) Rankable {
 	// At this point, we are at cache capacity.
 
 	// step 1: remove lowest rank item
-	c.removesLowestRankingItem()
+	c.removeLowestRankingItem()
 
 	// step 2: add the item search for.
 	c.items[item.key] = item
