@@ -5,10 +5,10 @@ import "math/rand"
 type Connection struct {
 }
 
-func (c *Connection) getItem(key string) Rankable {
-	// Any implemenation is fine for this exercise.
+func (c *Connection) getItem(key string) (Rankable, error) {
+	// Any implementation is fine for this exercise.
 	return Rankable{
-		key:  key,
-		rank: rand.Intn(100),
-	}
+		Key:  key,
+		Rank: rand.Intn(100),
+	}, nil
 }

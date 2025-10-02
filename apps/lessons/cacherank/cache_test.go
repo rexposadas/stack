@@ -8,35 +8,109 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestRemovesLowestRankingItem(t *testing.T) {
-	cache := NewCache(3, &Connection{})
-	cache.items["1"] = Rankable{key: "1", rank: 1}
-	cache.items["2"] = Rankable{key: "2", rank: 2}
-	cache.removesLowestRankingItem()
-	assert.Equal(t, len(cache.items), 1)
+// Test that verifies removeLowestRankingItem handles empty cache gracefully
+func TestRemoveLowestRankingItemEmptyCache(t *testing.T) {
+	cache, err := NewCache(3, &Connection{})
+	assert.NoError(t, err)
+
+	// Verify cache is empty
+	assert.Equal(t, 0, cache.Size())
+
+	// This should NOT panic - it should handle empty cache gracefully
+	cache.removeLowestRankingItem()
+
+	// Cache should still be empty
+	assert.Equal(t, 0, cache.Size())
+}
+
+// Test that verifies correct item is removed (lowest rank)
+func TestRemoveLowestRankingItemCorrectEviction(t *testing.T) {
+	cache, err := NewCache(3, &Connection{})
+	assert.NoError(t, err)
+
+	// Add items with known ranks using Put
+	cache.Put("high", 100)
+	cache.Put("medium", 50)
+	cache.Put("low", 10)
+
+	assert.Equal(t, 3, cache.Size())
+
+	// Remove lowest ranking item
+	cache.removeLowestRankingItem()
+
+	// Should have 2 items left
+	assert.Equal(t, 2, cache.Size())
+
+	// "low" (rank 10) should be gone
+	assert.False(t, cache.Contains("low"))
+
+	// "medium" and "high" should still exist
+	assert.True(t, cache.Contains("medium"))
+	assert.True(t, cache.Contains("high"))
+}
+
+// Test that verifies single item removal
+func TestRemoveLowestRankingItemSingleItem(t *testing.T) {
+	cache, err := NewCache(3, &Connection{})
+	assert.NoError(t, err)
+
+	cache.Put("only", 42)
+	assert.Equal(t, 1, cache.Size())
+
+	cache.removeLowestRankingItem()
+
+	assert.Equal(t, 0, cache.Size())
+	assert.False(t, cache.Contains("only"))
+}
+
+// Test tie-breaking behavior when multiple items have same rank
+func TestRemoveLowestRankingItemTieBreaking(t *testing.T) {
+	cache, err := NewCache(3, &Connection{})
+	assert.NoError(t, err)
+
+	// Add multiple items with same lowest rank
+	cache.Put("tie1", 10)
+	cache.Put("tie2", 10)
+	cache.Put("high", 50)
+
+	assert.Equal(t, 3, cache.Size())
+
+	cache.removeLowestRankingItem()
+
+	// Should remove one of the rank-10 items (non-deterministic which one)
+	assert.Equal(t, 2, cache.Size())
+
+	// Exactly one of the ties should remain
+	tie1Exists := cache.Contains("tie1")
+	tie2Exists := cache.Contains("tie2")
+	assert.True(t, tie1Exists != tie2Exists, "Exactly one tie item should remain")
+
+	// High should always remain
+	assert.True(t, cache.Contains("high"))
 }
 
 func TestGet(t *testing.T) {
-	cache := NewCache(3, &Connection{})
+	cache, err := NewCache(3, &Connection{})
+	assert.NoError(t, err)
 
-	cache.items["1"] = Rankable{key: "1", rank: 1}
-	cache.items["2"] = Rankable{key: "2", rank: 2}
+	cache.Put("1", 1)
+	cache.Put("2", 2)
 
-	a := cache.Get("1")
-	assert.Equal(t, a.key, "1")
-	assert.Equal(t, a.rank, 1)
+	a, err := cache.Get("1")
+	assert.NoError(t, err)
+	assert.Equal(t, "1", a.Key)
+	assert.Equal(t, 1, a.Rank)
 
-	a = cache.Get("2")
-	assert.Equal(t, a.key, "2")
-	assert.Equal(t, a.rank, 2)
+	a, err = cache.Get("2")
+	assert.NoError(t, err)
+	assert.Equal(t, "2", a.Key)
+	assert.Equal(t, 2, a.Rank)
 }
 
 func TestCacheConcurrentAccess(t *testing.T) {
-	// Create a mock connection
-	conn := &Connection{} // You might need to create a mock implementation
-
-	// Create cache with small capacity
-	cache := NewCache(2, conn)
+	conn := &Connection{}
+	cache, err := NewCache(2, conn)
+	assert.NoError(t, err)
 
 	// Number of concurrent goroutines to test with
 	numGoroutines := 100
@@ -50,7 +124,7 @@ func TestCacheConcurrentAccess(t *testing.T) {
 		go func(id int) {
 			defer wg.Done()
 			// Try to get the same key multiple times
-			cache.Get("test-key")
+			_, _ = cache.Get("test-key")
 		}(i)
 	}
 
@@ -62,7 +136,8 @@ func TestCacheConcurrentAccess(t *testing.T) {
 func TestCacheConcurrentCapacity(t *testing.T) {
 	conn := &Connection{}
 	capacity := 2
-	cache := NewCache(capacity, conn)
+	cache, err := NewCache(capacity, conn)
+	assert.NoError(t, err)
 
 	var wg sync.WaitGroup
 	numGoroutines := 10
@@ -72,7 +147,7 @@ func TestCacheConcurrentCapacity(t *testing.T) {
 		go func(id int) {
 			defer wg.Done()
 			key := fmt.Sprintf("key-%d", id)
-			cache.Get(key)
+			_, _ = cache.Get(key)
 
 			// Use thread-safe Size() method instead of accessing items directly
 			if cache.Size() > capacity {

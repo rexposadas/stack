@@ -1,9 +1,53 @@
-
 # Entries below this point are managed by Please (DO NOT EDIT)
 plz-out
 .plzconfig.local
 
-# Usage of sqllist
-#
-*.db
+# Go
+coverage.out
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+go.work
+go.work.sum
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment & Config
+.env
+.env.local
+.env.*.local
+*.log
