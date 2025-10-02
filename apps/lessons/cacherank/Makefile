@@ -11,3 +11,15 @@ test:  ## run the tests
 
 test_race:  ## run the tests with race detector
 	go test -v -race ./...
+
+
+coverage:  ## run tests with coverage report
+	go test -v -coverprofile=coverage.out ./...
+	go tool cover -func=coverage.out
+
+coverage_html:  ## run tests with coverage and open HTML report
+	go test -v -coverprofile=coverage.out ./...
+	go tool cover -html=coverage.out
+
+coverage_clean:  ## remove coverage files
+	rm -f coverage.out
